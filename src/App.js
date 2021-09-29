@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+
+const colors = ['red', 'green', 'blue', 'gold'];
+
+const generateColor = () => {
+  const index = Math.floor(Math.random() * colors.length);
+  return colors[index];
+};
+
+const balloonArr = Array(25)
+  .fill()
+  .map((_, i) => ({ id: i, popped: false, color: generateColor() }));
 
 function App() {
+  const [balloons, setBalloons] = useState(balloonArr);
+
+  const onPop = (index) => {
+    setBalloons((balloons) => {
+      const b = [...balloons];
+      b[index].popped = true;
+      return b;
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div>
+        {balloons.map((b, i) => {
+          if (!b.popped) {
+            return (
+              <div className='balloon-container' key={b.id}>
+                <div
+                  className='balloon'
+                  style={{ backgroundColor: b.color }}
+                  onClick={() => onPop(i)}
+                ></div>
+              </div>
+            );
+          } else {
+            return <div className='balloon-container'>pop!</div>;
+          }
+        })}
+      </div>
     </div>
   );
 }
