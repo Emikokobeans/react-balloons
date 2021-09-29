@@ -1,14 +1,14 @@
 import './App.css';
 import React, { useState } from 'react';
 
-const colors = ['red', 'green', 'blue', 'gold'];
+const colors = ['#F1DDE4', '#DDF1E4', '#DDE4F1', '#F1E4DD'];
 
 const generateColor = () => {
   const index = Math.floor(Math.random() * colors.length);
   return colors[index];
 };
 
-const balloonArr = Array(25)
+const balloonArr = Array(35)
   .fill()
   .map((_, i) => ({ id: i, popped: false, color: generateColor() }));
 
@@ -37,7 +37,13 @@ function App() {
               </div>
             );
           } else {
-            return <div className='balloon-container'>pop!</div>;
+            return (
+              <div className='balloon-container'>
+                <div className='pop'>
+                  <div className='center-pop'>pop!</div>
+                </div>
+              </div>
+            );
           }
         })}
       </div>
