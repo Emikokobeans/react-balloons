@@ -52,3 +52,12 @@ function App() {
 }
 
 export default App;
+
+/*
+ pop container needs realigning
+ change background colour
+ add header
+ add reset button
+ change title and favicon
+ add bubble effect to balloons?
+*/
